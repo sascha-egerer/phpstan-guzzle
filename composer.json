@@ -1,0 +1,23 @@
+{
+	"name": "azzra/phpstan-guzzle",
+	"description": "Guzzle extensions for PHPStan",
+	"license": ["MIT"],
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"require": {
+		"php": "~7.0",
+		"phpstan/phpstan": "^0.6.3",
+		"guzzlehttp/guzzle": "~6.0"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "^5.7"
+	},
+	"autoload": {
+		"psr-4": {
+			"PHPStan\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"classmap": ["tests/"]
+	}
+}
