@@ -1,7 +1,8 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 
 namespace PHPStan\Reflection\Guzzle;
-
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -17,9 +18,8 @@ use PHPStan\Type\Type;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UriInterface;
 
-class GuzzleMethodReflection implements MethodReflection
+class ClientMethodReflection implements MethodReflection
 {
-
     private $broker;
     private $name;
 
@@ -64,9 +64,9 @@ class GuzzleMethodReflection implements MethodReflection
         return [
             new DummyParameter('uri', new CommonUnionType([
                 new StringType(false),
-                new ObjectType(UriInterface::class, false)
+                new ObjectType(UriInterface::class, false),
             ], false), false),
-            new DummyParameter('options', new MixedType(), true)
+            new DummyParameter('options', new MixedType(), true),
         ];
     }
 
@@ -77,9 +77,6 @@ class GuzzleMethodReflection implements MethodReflection
 
     public function getReturnType(): Type
     {
-        return 'Async' !== substr($this->name, -5) ?
-            new ObjectType(ResponseInterface::class, false) : new ObjectType(PromiseInterface::class, false);
+        return new ObjectType('Async' !== substr($this->name, -5) ? ResponseInterface::class : PromiseInterface::class, false);
     }
-
-
 }
