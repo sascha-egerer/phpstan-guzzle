@@ -1,5 +1,5 @@
 {
-	"name": "azzra/phpstan-guzzle",
+	"name": "phpstan/phpstan-guzzle",
 	"description": "Guzzle extensions for PHPStan",
 	"license": ["MIT"],
 	"minimum-stability": "dev",
