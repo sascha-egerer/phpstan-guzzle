@@ -32,7 +32,7 @@ class ClientMethodsClassReflectionExtensionTest extends TestCase
 	 */
 	public function testHasMethod(bool $expected, string $className, string $methodName)
 	{
-		/** @var \PHPUnit_Framework_MockObject_Builder_MethodNameMatch $classReflection */
+		/** @var \PHPUnit_Framework_MockObject_MockObject $classReflection */
 		$classReflection = $this->createMock(ClassReflection::class);
 		$classReflection->method('getName')->will($this->returnValue($className));
 		$this->assertSame($expected, $this->extension->hasMethod($classReflection, $methodName));
