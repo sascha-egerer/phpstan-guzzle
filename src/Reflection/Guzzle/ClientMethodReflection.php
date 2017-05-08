@@ -63,9 +63,9 @@ class ClientMethodReflection implements MethodReflection
 	{
 		return [
 			new DummyParameter('uri', new CommonUnionType([
-				new StringType(false),
-				new ObjectType(UriInterface::class, false),
-			], false), false),
+				new StringType(),
+				new ObjectType(UriInterface::class),
+			]), false),
 			new DummyParameter('options', new MixedType(), true),
 		];
 	}
@@ -77,7 +77,7 @@ class ClientMethodReflection implements MethodReflection
 
 	public function getReturnType(): Type
 	{
-		return new ObjectType(substr($this->name, -5) !== 'Async' ? ResponseInterface::class : PromiseInterface::class, false);
+		return new ObjectType(substr($this->name, -5) !== 'Async' ? ResponseInterface::class : PromiseInterface::class);
 	}
 
 }

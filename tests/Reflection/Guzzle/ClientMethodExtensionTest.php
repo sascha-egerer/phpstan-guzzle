@@ -9,13 +9,9 @@ use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\Guzzle\ClientMethodReflection;
 use PHPStan\Reflection\Guzzle\ClientMethodsClassReflectionExtension;
 use PHPStan\Reflection\Php\DummyParameter;
-use PHPStan\Type\CommonUnionType;
-use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
-use PHPStan\Type\StringType;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\UriInterface;
 
 class ClientMethodExtensionTest extends TestCase
 {
@@ -47,8 +43,7 @@ class ClientMethodExtensionTest extends TestCase
 		$type = $methodReflection->getReturnType();
 
 		$this->assertInstanceOf(ObjectType::class, $type);
-		$this->assertSame($className, $type->getClass());
-		$this->assertFalse($type->isNullable());
+		$this->assertSame($className, $type->describe());
 	}
 
 	public function getReturnTypeProvider(): array
@@ -76,22 +71,12 @@ class ClientMethodExtensionTest extends TestCase
 		$parameter = $parameters[0];
 		$this->assertInstanceOf(DummyParameter::class, $parameter);
 		$this->assertFalse($parameter->isOptional());
-		$this->assertInstanceOf(CommonUnionType::class, $parameter->getType());
-
-		/** @var CommonUnionType $unionType */
-		$unionType = $parameter->getType();
-		$types = $unionType->getTypes();
-		$this->assertSame(2, count($types));
-		$this->assertInstanceOf(StringType::class, $types[0]);
-		$this->assertFalse($types[0]->isNullable());
-		$this->assertInstanceOf(ObjectType::class, $types[1]);
-		$this->assertFalse($types[1]->isNullable());
-		$this->assertSame(UriInterface::class, $types[1]->getClass());
+		$this->assertSame('Psr\Http\Message\UriInterface|string', $parameter->getType()->describe());
 
 		$parameter = $parameters[1];
 		$this->assertInstanceOf(DummyParameter::class, $parameter);
 		$this->assertTrue($parameter->isOptional());
-		$this->assertInstanceOf(MixedType::class, $parameter->getType());
+		$this->assertSame('mixed', $parameter->getType()->describe());
 	}
 
 }
