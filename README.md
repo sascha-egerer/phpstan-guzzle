@@ -1,11 +1,6 @@
 # Guzzle extensions for PHPStan
 
-[![Build Status](https://travis-ci.org/phpstan/phpstan-guzzle.svg)](https://travis-ci.org/phpstan/phpstan-guzzle)
-[![Latest Stable Version](https://poser.pugx.org/phpstan/phpstan-guzzle/v/stable)](https://packagist.org/packages/phpstan/phpstan-guzzle)
-[![Coverage Status](https://coveralls.io/repos/github/phpstan/phpstan-guzzle/badge.svg?branch=master)](https://coveralls.io/github/phpstan/phpstan-guzzle?branch=master)
-[![Code Climate](https://codeclimate.com/github/phpstan/phpstan-guzzle/badges/gpa.svg)](https://codeclimate.com/github/phpstan/phpstan-guzzle)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/97e9801f916f4244a8fa06599e0f7ba5)](https://www.codacy.com/app/phpstan/phpstan-guzzle?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=phpstan/phpstan-guzzle&amp;utm_campaign=Badge_Grade)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/de604dee-49f0-40c9-965c-62d0b001c887/mini.png)](https://insight.sensiolabs.com/projects/de604dee-49f0-40c9-965c-62d0b001c887)
+**This extension is deprecated, because since PHPStan 0.8 `@method` annotations are read including method parameters, making this extension obsolete. Guzzle HTTP client can now be used without any special extension.**
 
 * [PHPStan](https://github.com/phpstan/phpstan)
 * [Guzzle](https://github.com/guzzle/guzzle)
